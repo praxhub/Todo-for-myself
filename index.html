@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f4f5" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Todo Calendar (Offline)</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Todo + Calendar</h1>
+        <div class="header-actions">
+          <button id="theme-btn" class="ghost-btn" type="button" aria-label="Toggle theme">🌞 Light</button>
+          <button id="notify-btn" class="ghost-btn" type="button">Enable Notifications</button>
+        </div>
+      </header>
+
+      <section class="panel form-panel">
+        <h2>Add Task</h2>
+        <form id="task-form" class="task-form">
+          <label>
+            Task
+            <input id="task-title" type="text" required placeholder="e.g., Gym session" maxlength="120" />
+          </label>
+          <label>
+            Date
+            <input id="task-date" type="date" required />
+          </label>
+          <label>
+            Time
+            <input id="task-time" type="time" required />
+          </label>
+          <label>
+            Recurring
+            <select id="task-recurring">
+              <option value="none">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </label>
+          <label>
+            Reminder Sound
+            <select id="sound-select">
+              <option value="off">Off</option>
+              <option value="beep">Beep</option>
+              <option value="chime">Chime</option>
+            </select>
+          </label>
+          <button id="test-sound-btn" class="ghost-btn" type="button">Test Sound</button>
+          <button class="primary-btn" type="submit">Save</button>
+        </form>
+      </section>
+
+      <section class="panel calendar-panel">
+        <div class="calendar-head">
+          <button id="prev-month" type="button" aria-label="Previous period">◀</button>
+          <h2 id="month-label"></h2>
+          <button id="next-month" type="button" aria-label="Next period">▶</button>
+          <select id="view-mode" aria-label="Calendar view mode">
+            <option value="month">Month View</option>
+            <option value="week">Week View</option>
+          </select>
+        </div>
+        <div class="calendar-grid" aria-live="polite">
+          <div id="calendar-weekdays" class="calendar-weekdays"></div>
+          <div id="calendar-days" class="calendar-days"></div>
+        </div>
+      </section>
+
+      <section class="panel tasks-panel">
+        <h2>Tasks</h2>
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+
+      <section class="panel notes-panel">
+        <div class="notes-head">
+          <h2>Daily Notes</h2>
+          <small id="note-status" class="note-status"></small>
+        </div>
+
+        <div class="notes-layout">
+          <div class="notes-editor-pane">
+            <label>
+              Note Date
+              <input id="note-date" type="date" />
+            </label>
+
+            <div class="note-toolbar" role="toolbar" aria-label="Text formatting">
+              <button class="ghost-btn format-btn" data-format="bold" type="button"><strong>B</strong></button>
+              <button class="ghost-btn format-btn" data-format="italic" type="button"><em>I</em></button>
+              <button class="ghost-btn format-btn" data-format="heading" type="button">H3</button>
+              <button class="ghost-btn format-btn" data-format="bullet" type="button">• List</button>
+            </div>
+
+            <label class="notes-editor-label">
+              Notes
+              <textarea id="note-text" rows="16" placeholder="Write your notes for this date..."></textarea>
+            </label>
+
+            <div class="note-preview-wrap">
+              <h3>Preview</h3>
+              <div id="note-preview" class="note-preview"></div>
+            </div>
+
+            <button id="save-note-btn" class="primary-btn" type="button">Save Note</button>
+          </div>
+
+          <aside class="notes-history-pane" aria-label="Saved notes history">
+            <h3>History</h3>
+            <ul id="saved-note-dates" class="note-dates"></ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

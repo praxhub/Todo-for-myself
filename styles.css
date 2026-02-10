@@ -1,0 +1,265 @@
+:root {
+  --bg: #f4f4f5;
+  --panel: #ffffff;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #2563eb;
+  --border: #e4e4e7;
+  --ok: #16a34a;
+  --warn: #dc2626;
+}
+
+body[data-theme="dark"] {
+  --bg: #111827;
+  --panel: #1f2937;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --accent: #60a5fa;
+  --border: #374151;
+  --ok: #22c55e;
+  --warn: #f87171;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions { display: flex; gap: 0.5rem; }
+
+h1, h2, h3 { margin: 0; font-weight: 600; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.task-form { display: grid; gap: 0.75rem; }
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--text);
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+}
+
+.primary-btn { background: var(--accent); color: #fff; }
+
+.ghost-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.link-btn {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text);
+  width: 100%;
+  text-align: left;
+}
+
+.calendar-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+#month-label { text-align: center; }
+
+.calendar-grid { display: grid; gap: 0.4rem; }
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.day-name,
+.day,
+.day-spacer {
+  text-align: center;
+  padding: 0.45rem;
+  border-radius: 8px;
+}
+
+.day-name {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.day {
+  border: 1px solid var(--border);
+  min-height: 48px;
+  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+}
+
+.week-day {
+  min-height: 74px;
+  align-content: center;
+}
+
+.week-day small {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.day-spacer { min-height: 48px; }
+.day.has-task { border-color: var(--accent); }
+.day.overdue { border-color: var(--warn); color: var(--warn); }
+.day.today { background: color-mix(in srgb, var(--accent) 14%, transparent); font-weight: 600; }
+
+.notes-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.85rem;
+  background: radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 20%, transparent), transparent 45%), var(--panel);
+}
+
+.notes-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.notes-layout {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.notes-editor-pane,
+.notes-history-pane {
+  border: 1px solid color-mix(in srgb, var(--border) 86%, var(--accent));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--panel) 92%, var(--accent));
+  padding: 0.9rem;
+}
+
+.notes-editor-pane { display: grid; gap: 0.8rem; }
+.notes-editor-label { gap: 0.45rem; }
+
+.note-toolbar {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.format-btn { min-width: 44px; }
+
+#note-text {
+  min-height: 360px;
+  line-height: 1.55;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.note-preview-wrap {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.note-preview {
+  min-height: 120px;
+}
+
+.note-preview p,
+.note-preview ul,
+.note-preview h3 { margin: 0.4rem 0; }
+
+.notes-history-pane h3 { margin-bottom: 0.6rem; }
+
+.task-list,
+.note-dates {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.note-dates {
+  margin-top: 0;
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 0.2rem;
+}
+
+.task-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.task-item small,
+.note-status { color: var(--muted); }
+
+.task-actions { display: flex; gap: 0.4rem; }
+.status-overdue { color: var(--warn); }
+.status-done { color: var(--ok); }
+
+@media (max-width: 980px) {
+  .calendar-head {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  #view-mode {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 880px) {
+  .notes-layout { grid-template-columns: 1fr; }
+  #note-text { min-height: 280px; }
+}

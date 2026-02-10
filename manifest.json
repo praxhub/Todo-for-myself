@@ -1,0 +1,9 @@
+{
+  "name": "Todo Calendar Offline",
+  "short_name": "TodoCal",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f4f5",
+  "theme_color": "#f4f4f5",
+  "icons": []
+}
