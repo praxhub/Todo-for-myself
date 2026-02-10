@@ -12,10 +12,7 @@
     <main class="app">
       <header class="header">
         <h1>Todo + Calendar</h1>
-        <div class="header-actions">
-          <button id="theme-btn" class="ghost-btn" type="button" aria-label="Toggle theme">🌞 Light</button>
-          <button id="notify-btn" class="ghost-btn" type="button">Enable Notifications</button>
-        </div>
+        <button id="notify-btn" class="ghost-btn" type="button">Enable Notifications</button>
       </header>
 
       <section class="panel form-panel">
@@ -52,32 +49,6 @@
       <section class="panel tasks-panel">
         <h2>Tasks</h2>
         <ul id="task-list" class="task-list"></ul>
-      </section>
-
-      <section class="panel notes-panel">
-        <div class="notes-head">
-          <h2>Daily Notes</h2>
-          <small id="note-status" class="note-status"></small>
-        </div>
-
-        <div class="notes-layout">
-          <div class="notes-editor-pane">
-            <label>
-              Note Date
-              <input id="note-date" type="date" />
-            </label>
-            <label class="notes-editor-label">
-              Notes
-              <textarea id="note-text" rows="16" placeholder="Write your notes for this date..."></textarea>
-            </label>
-            <button id="save-note-btn" class="primary-btn" type="button">Save Note</button>
-          </div>
-
-          <aside class="notes-history-pane" aria-label="Saved notes history">
-            <h3>History</h3>
-            <ul id="saved-note-dates" class="note-dates"></ul>
-          </aside>
-        </div>
       </section>
     </main>
 

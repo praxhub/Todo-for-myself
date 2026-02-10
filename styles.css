@@ -9,17 +9,6 @@
   --warn: #dc2626;
 }
 
-body[data-theme="dark"] {
-  --bg: #111827;
-  --panel: #1f2937;
-  --text: #f3f4f6;
-  --muted: #9ca3af;
-  --accent: #60a5fa;
-  --border: #374151;
-  --ok: #22c55e;
-  --warn: #f87171;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -32,12 +21,12 @@ body {
 }
 
 .app {
-  max-width: 1180px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 1rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .header {
@@ -47,14 +36,8 @@ body {
   align-items: center;
 }
 
-.header-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
 h1,
-h2,
-h3 {
+h2 {
   margin: 0;
   font-weight: 600;
 }
@@ -77,14 +60,11 @@ label {
   font-size: 0.9rem;
 }
 
-input,
-textarea {
+input {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.55rem 0.6rem;
   font-size: 0.95rem;
-  background: transparent;
-  color: var(--text);
 }
 
 button {
@@ -103,14 +83,6 @@ button {
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
-}
-
-.link-btn {
-  background: transparent;
-  border: 1px dashed var(--border);
-  color: var(--text);
-  width: 100%;
-  text-align: left;
 }
 
 .calendar-head {
@@ -152,10 +124,10 @@ button {
   display: grid;
   place-items: center;
 }
-
 .day-spacer {
   min-height: 48px;
 }
+
 
 .day.has-task {
   border-color: var(--accent);
@@ -167,75 +139,16 @@ button {
 }
 
 .day.today {
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  background: #eff6ff;
   font-weight: 600;
 }
 
-.notes-panel {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 0.85rem;
-  background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 20%, transparent), transparent 45%),
-    var(--panel);
-}
-
-.notes-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.notes-layout {
-  display: grid;
-  grid-template-columns: 7fr 3fr;
-  gap: 0.9rem;
-  align-items: start;
-}
-
-.notes-editor-pane,
-.notes-history-pane {
-  border: 1px solid color-mix(in srgb, var(--border) 86%, var(--accent));
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--panel) 92%, var(--accent));
-  padding: 0.9rem;
-}
-
-.notes-editor-pane {
-  display: grid;
-  gap: 0.8rem;
-}
-
-.notes-editor-label {
-  gap: 0.45rem;
-}
-
-#note-text {
-  min-height: 360px;
-  line-height: 1.55;
-  font-size: 1rem;
-  resize: vertical;
-}
-
-.notes-history-pane h3 {
-  margin-bottom: 0.6rem;
-}
-
-.task-list,
-.note-dates {
+.task-list {
   list-style: none;
   margin: 0.8rem 0 0;
   padding: 0;
   display: grid;
   gap: 0.55rem;
-}
-
-.note-dates {
-  margin-top: 0;
-  max-height: 440px;
-  overflow: auto;
-  padding-right: 0.2rem;
 }
 
 .task-item {
@@ -248,8 +161,7 @@ button {
   align-items: center;
 }
 
-.task-item small,
-.note-status {
+.task-item small {
   color: var(--muted);
 }
 
@@ -264,14 +176,4 @@ button {
 
 .status-done {
   color: var(--ok);
-}
-
-@media (max-width: 880px) {
-  .notes-layout {
-    grid-template-columns: 1fr;
-  }
-
-  #note-text {
-    min-height: 280px;
-  }
 }

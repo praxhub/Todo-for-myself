@@ -1,13 +1,9 @@
 const STORAGE_KEY = "todo_calendar_tasks_v1";
-const NOTES_STORAGE_KEY = "todo_calendar_notes_v1";
-const THEME_STORAGE_KEY = "todo_calendar_theme_v1";
 const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const state = {
   tasks: loadTasks(),
-  notes: loadNotes(),
   viewDate: new Date(),
-  theme: loadTheme(),
 };
 
 const form = document.getElementById("task-form");
@@ -19,12 +15,6 @@ const monthLabel = document.getElementById("month-label");
 const calendarWeekdays = document.getElementById("calendar-weekdays");
 const calendarDays = document.getElementById("calendar-days");
 const notifyBtn = document.getElementById("notify-btn");
-const themeBtn = document.getElementById("theme-btn");
-const noteDate = document.getElementById("note-date");
-const noteText = document.getElementById("note-text");
-const saveNoteBtn = document.getElementById("save-note-btn");
-const noteStatus = document.getElementById("note-status");
-const savedNoteDates = document.getElementById("saved-note-dates");
 
 document.getElementById("prev-month").addEventListener("click", () => {
   state.viewDate.setMonth(state.viewDate.getMonth() - 1);
@@ -69,35 +59,6 @@ notifyBtn.addEventListener("click", async () => {
   }
 });
 
-themeBtn.addEventListener("click", () => {
-  state.theme = state.theme === "light" ? "dark" : "light";
-  saveTheme(state.theme);
-  applyTheme();
-});
-
-noteDate.addEventListener("change", () => {
-  loadNoteForSelectedDate();
-});
-
-saveNoteBtn.addEventListener("click", () => {
-  const dateKey = noteDate.value;
-  if (!dateKey) return;
-
-  state.notes[dateKey] = noteText.value.trim();
-  saveNotes(state.notes);
-  showNoteStatus(`Saved note for ${formatDateOnly(dateKey)}.`);
-  renderSavedDates();
-});
-
-noteText.addEventListener("input", () => {
-  const dateKey = noteDate.value;
-  if (!dateKey) return;
-
-  state.notes[dateKey] = noteText.value;
-  saveNotes(state.notes);
-  renderSavedDates();
-});
-
 function loadTasks() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
@@ -110,37 +71,10 @@ function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
 
-function loadNotes() {
-  try {
-    return JSON.parse(localStorage.getItem(NOTES_STORAGE_KEY) ?? "{}");
-  } catch {
-    return {};
-  }
-}
-
-function saveNotes(notes) {
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-}
-
-function loadTheme() {
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  return stored === "dark" ? "dark" : "light";
-}
-
-function saveTheme(theme) {
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
-}
-
 function formatDue(iso) {
   return new Date(iso).toLocaleString([], {
     dateStyle: "medium",
     timeStyle: "short",
-  });
-}
-
-function formatDateOnly(dateKey) {
-  return new Date(`${dateKey}T00:00:00`).toLocaleDateString([], {
-    dateStyle: "medium",
   });
 }
 
@@ -277,58 +211,9 @@ function renderCalendar() {
   }
 }
 
-function renderSavedDates() {
-  const dates = Object.keys(state.notes)
-    .filter((dateKey) => state.notes[dateKey]?.trim())
-    .sort((a, b) => b.localeCompare(a))
-    .slice(0, 10);
-
-  savedNoteDates.innerHTML = "";
-  if (!dates.length) {
-    savedNoteDates.innerHTML = "<li><small>No saved notes yet.</small></li>";
-    return;
-  }
-
-  for (const dateKey of dates) {
-    const li = document.createElement("li");
-    li.innerHTML = `<button class="link-btn" data-date="${dateKey}" type="button">${formatDateOnly(dateKey)}</button>`;
-    savedNoteDates.appendChild(li);
-  }
-
-  savedNoteDates.querySelectorAll("button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      noteDate.value = btn.dataset.date;
-      loadNoteForSelectedDate();
-    });
-  });
-}
-
-function loadNoteForSelectedDate() {
-  const dateKey = noteDate.value;
-  noteText.value = state.notes[dateKey] ?? "";
-  showNoteStatus(`Viewing note for ${formatDateOnly(dateKey)}.`);
-}
-
-function showNoteStatus(message) {
-  noteStatus.textContent = message;
-}
-
-function getTodayInputDate() {
-  const now = new Date();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${now.getFullYear()}-${month}-${day}`;
-}
-
-function applyTheme() {
-  document.body.dataset.theme = state.theme;
-  themeBtn.textContent = state.theme === "light" ? "🌞 Light" : "🌙 Dark";
-}
-
 function render() {
   renderCalendar();
   renderTasks();
-  renderSavedDates();
 }
 
 function escapeHtml(str) {
@@ -345,9 +230,6 @@ if (Notification.permission === "granted") {
   notifyBtn.textContent = "Notifications Enabled";
 }
 
-noteDate.value = getTodayInputDate();
-loadNoteForSelectedDate();
-applyTheme();
 runOverdueCheck();
 render();
 setInterval(() => {

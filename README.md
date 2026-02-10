@@ -8,10 +8,6 @@ A minimal offline-first todo app aligned with a calendar view.
 - Calendar month view with task days highlighted.
 - Missed-time detection (overdue tasks are marked).
 - Browser notifications when a task time is missed (after permission is enabled).
-- Daily notes section with date-based saving (notes are stored by date).
-- Light/Dark theme toggle button:
-  - Light mode shows 🌞 on the switch.
-  - Dark mode shows 🌙 on the switch.
 - Local-first storage via `localStorage`.
 - Offline support using a service worker cache.
 
