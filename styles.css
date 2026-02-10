@@ -1,0 +1,209 @@
+:root {
+  --bg: #f4f4f5;
+  --panel: #ffffff;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #2563eb;
+  --border: #e4e4e7;
+  --ok: #16a34a;
+  --warn: #dc2626;
+}
+
+body[data-theme="dark"] {
+  --bg: #111827;
+  --panel: #1f2937;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --accent: #60a5fa;
+  --border: #374151;
+  --ok: #22c55e;
+  --warn: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.task-form,
+.notes-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+input,
+textarea {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--text);
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: #fff;
+}
+
+.ghost-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.link-btn {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text);
+  width: 100%;
+  text-align: left;
+}
+
+.calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.calendar-grid {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.day-name,
+.day,
+.day-spacer {
+  text-align: center;
+  padding: 0.45rem;
+  border-radius: 8px;
+}
+
+.day-name {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.day {
+  border: 1px solid var(--border);
+  min-height: 48px;
+  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+}
+
+.day-spacer {
+  min-height: 48px;
+}
+
+.day.has-task {
+  border-color: var(--accent);
+}
+
+.day.overdue {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.day.today {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  font-weight: 600;
+}
+
+.task-list,
+.note-dates {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.task-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.task-item small,
+.note-status {
+  color: var(--muted);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.status-overdue {
+  color: var(--warn);
+}
+
+.status-done {
+  color: var(--ok);
+}

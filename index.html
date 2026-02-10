@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f4f5" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Todo Calendar (Offline)</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Todo + Calendar</h1>
+        <div class="header-actions">
+          <button id="theme-btn" class="ghost-btn" type="button" aria-label="Toggle theme">🌞 Light</button>
+          <button id="notify-btn" class="ghost-btn" type="button">Enable Notifications</button>
+        </div>
+      </header>
+
+      <section class="panel form-panel">
+        <h2>Add Task</h2>
+        <form id="task-form" class="task-form">
+          <label>
+            Task
+            <input id="task-title" type="text" required placeholder="e.g., Gym session" maxlength="120" />
+          </label>
+          <label>
+            Date
+            <input id="task-date" type="date" required />
+          </label>
+          <label>
+            Time
+            <input id="task-time" type="time" required />
+          </label>
+          <button class="primary-btn" type="submit">Save</button>
+        </form>
+      </section>
+
+      <section class="panel calendar-panel">
+        <div class="calendar-head">
+          <button id="prev-month" type="button" aria-label="Previous month">◀</button>
+          <h2 id="month-label"></h2>
+          <button id="next-month" type="button" aria-label="Next month">▶</button>
+        </div>
+        <div class="calendar-grid" aria-live="polite">
+          <div id="calendar-weekdays" class="calendar-weekdays"></div>
+          <div id="calendar-days" class="calendar-days"></div>
+        </div>
+      </section>
+
+      <section class="panel tasks-panel">
+        <h2>Tasks</h2>
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+
+      <section class="panel notes-panel">
+        <h2>Daily Notes</h2>
+        <label>
+          Note Date
+          <input id="note-date" type="date" />
+        </label>
+        <label>
+          Notes
+          <textarea id="note-text" rows="8" placeholder="Write your notes for this date..."></textarea>
+        </label>
+        <button id="save-note-btn" class="primary-btn" type="button">Save Note</button>
+        <small id="note-status" class="note-status"></small>
+        <ul id="saved-note-dates" class="note-dates"></ul>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
