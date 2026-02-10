@@ -1,4 +1,4 @@
-const CACHE_NAME = "todo-calendar-offline-v1";
+const CACHE_NAME = "todo-calendar-offline-v2";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
