@@ -55,18 +55,29 @@
       </section>
 
       <section class="panel notes-panel">
-        <h2>Daily Notes</h2>
-        <label>
-          Note Date
-          <input id="note-date" type="date" />
-        </label>
-        <label>
-          Notes
-          <textarea id="note-text" rows="8" placeholder="Write your notes for this date..."></textarea>
-        </label>
-        <button id="save-note-btn" class="primary-btn" type="button">Save Note</button>
-        <small id="note-status" class="note-status"></small>
-        <ul id="saved-note-dates" class="note-dates"></ul>
+        <div class="notes-head">
+          <h2>Daily Notes</h2>
+          <small id="note-status" class="note-status"></small>
+        </div>
+
+        <div class="notes-layout">
+          <div class="notes-editor-pane">
+            <label>
+              Note Date
+              <input id="note-date" type="date" />
+            </label>
+            <label class="notes-editor-label">
+              Notes
+              <textarea id="note-text" rows="16" placeholder="Write your notes for this date..."></textarea>
+            </label>
+            <button id="save-note-btn" class="primary-btn" type="button">Save Note</button>
+          </div>
+
+          <aside class="notes-history-pane" aria-label="Saved notes history">
+            <h3>History</h3>
+            <ul id="saved-note-dates" class="note-dates"></ul>
+          </aside>
+        </div>
       </section>
     </main>
 
