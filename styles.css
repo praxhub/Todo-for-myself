@@ -94,12 +94,19 @@ button {
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  gap: 0.4rem;
+}
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0.4rem;
 }
 
 .day-name,
-.day {
+.day,
+.day-spacer {
   text-align: center;
   padding: 0.45rem;
   border-radius: 8px;
@@ -117,6 +124,10 @@ button {
   display: grid;
   place-items: center;
 }
+.day-spacer {
+  min-height: 48px;
+}
+
 
 .day.has-task {
   border-color: var(--accent);

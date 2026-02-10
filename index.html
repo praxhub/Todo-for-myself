@@ -40,7 +40,10 @@
           <h2 id="month-label"></h2>
           <button id="next-month" type="button" aria-label="Next month">▶</button>
         </div>
-        <div id="calendar-grid" class="calendar-grid" aria-live="polite"></div>
+        <div class="calendar-grid" aria-live="polite">
+          <div id="calendar-weekdays" class="calendar-weekdays"></div>
+          <div id="calendar-days" class="calendar-days"></div>
+        </div>
       </section>
 
       <section class="panel tasks-panel">

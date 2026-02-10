@@ -12,7 +12,8 @@ const taskDate = document.getElementById("task-date");
 const taskTime = document.getElementById("task-time");
 const taskList = document.getElementById("task-list");
 const monthLabel = document.getElementById("month-label");
-const calendarGrid = document.getElementById("calendar-grid");
+const calendarWeekdays = document.getElementById("calendar-weekdays");
+const calendarDays = document.getElementById("calendar-days");
 const notifyBtn = document.getElementById("notify-btn");
 
 document.getElementById("prev-month").addEventListener("click", () => {
@@ -179,17 +180,21 @@ function renderCalendar() {
     state.tasks.filter(isOverdue).map((task) => new Date(task.dueISO).toDateString()),
   );
 
-  calendarGrid.innerHTML = "";
+  calendarWeekdays.innerHTML = "";
+  calendarDays.innerHTML = "";
+
   for (const dayName of DAY_NAMES) {
     const el = document.createElement("div");
     el.className = "day-name";
     el.textContent = dayName;
-    calendarGrid.appendChild(el);
+    calendarWeekdays.appendChild(el);
   }
 
   for (let i = 0; i < startOffset; i += 1) {
     const spacer = document.createElement("div");
-    calendarGrid.appendChild(spacer);
+    spacer.className = "day-spacer";
+    spacer.setAttribute("aria-hidden", "true");
+    calendarDays.appendChild(spacer);
   }
 
   const today = new Date().toDateString();
@@ -202,7 +207,7 @@ function renderCalendar() {
     if (overdueDays.has(dateString)) el.classList.add("overdue");
     if (dateString === today) el.classList.add("today");
     el.textContent = String(day);
-    calendarGrid.appendChild(el);
+    calendarDays.appendChild(el);
   }
 }
 
